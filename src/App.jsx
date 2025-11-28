@@ -179,6 +179,30 @@ const data = {
       details: ["High academic distinction for multiple years."],
     },
   ],
+  training: [
+    {
+      title: "Graduate Leadership Development Certificate",
+      org: "Concordia University, Montreal, QC",
+      year: "July 2025",
+      image: "/images/concordia.png",
+      certificate: "/images/leadership-cert.png",
+      details: [
+        "Completed a Graduate Leadership Development Certificate covering emotional intelligence, team leadership, negotiation, problem-solving, motivating others, and supporting team performance."
+      ],
+    },
+    {
+      title: "Québec Scientific Entrepreneurship Program (QcSE)",
+      org: "V1 Studio / QcSE",
+      year: "Dec 2024",
+      image: "/images/qcse.png",
+      certificate: "/images/qcse-cert.png",
+      details: [
+        "Completed the QcSE scientific entrepreneurship program focused on idea validation, customer discovery, and early-stage venture design.",
+        "Credential ID: 04656264506816"
+        // "Sertifier: https://verified.sertifier.com/en/verify/04656264506816/"
+      ],
+    },
+  ],
 };
 
 export default function App() {
@@ -310,6 +334,18 @@ export default function App() {
             />
           </Section>
         )}
+
+        {activeSection === "training" && (
+          <Section title="Training">
+            <CardList
+              items={data.training}
+              expandedIndex={expandedIndex}
+              toggleExpand={toggleExpand}
+              activeSection={activeSection}
+            />
+          </Section>
+        )}
+
         <div className="mt-10">
           <MiniGame />
         </div>
@@ -413,6 +449,18 @@ function CardList({ items, expandedIndex, toggleExpand, activeSection }) {
                     />
                   </div>
                 )}
+
+                {/* Training certificate */}
+                {item.certificate && activeSection === "training" && (
+                  <div className="flex justify-center mt-3">
+                    <img
+                      src={item.certificate}
+                      alt={`${item.title} certificate`}
+                      className="rounded-lg border-2 border-green-700 w-full max-w-md shadow-md"
+                    />
+                  </div>
+                )}
+
               </div>
             )}
 
